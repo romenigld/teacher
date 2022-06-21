@@ -1,4 +1,9 @@
-<h1>Listing Albums</h1>
+<div class="pull-right">
+  <span><%= link "New Album", to: Routes.album_path(@conn, :new) %></span>
+</div>
+
+<h1 class="pull-center">Listing Albums</h1>
+
 
 <table>
   <thead>
@@ -28,5 +33,3 @@
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Album", to: Routes.album_path(@conn, :new) %></span>
