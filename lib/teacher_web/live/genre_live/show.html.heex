@@ -1,0 +1,26 @@
+<h1>Show Genre</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.genre_show_path(@socket, :show, @genre)}>
+    <.live_component
+      module={TeacherWeb.GenreLive.FormComponent}
+      id={@genre.id}
+      title={@page_title}
+      action={@live_action}
+      genre={@genre}
+      return_to={Routes.genre_show_path(@socket, :show, @genre)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @genre.name %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.genre_show_path(@socket, :edit, @genre), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.genre_index_path(@socket, :index) %></span>

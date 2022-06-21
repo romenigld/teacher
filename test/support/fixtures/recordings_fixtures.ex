@@ -20,4 +20,18 @@ defmodule Teacher.RecordingsFixtures do
 
     album
   end
+
+  @doc """
+  Generate a genre.
+  """
+  def genre_fixture(attrs \\ %{}) do
+    {:ok, genre} =
+      attrs
+      |> Enum.into(%{
+        name: "some name"
+      })
+      |> Teacher.Recordings.create_genre()
+
+    genre
+  end
 end

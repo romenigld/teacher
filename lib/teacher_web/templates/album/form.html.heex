@@ -21,6 +21,11 @@
   <%= number_input f, :year %>
   <%= error_tag f, :year %>
 
+  <%= label f, :genres %>
+  <%= multiple_select f, :genres,
+      Enum.map(@genres, fn(genre) -> {genre.name, genre.id} end),
+      selected: Enum.map(@album.genres, &(&1.id)) %>
+  <%= error_tag f, :genres %>
   <div>
     <%= submit "Save" %>
   </div>

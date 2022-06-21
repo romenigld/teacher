@@ -1,9 +1,9 @@
 <div class="pull-right">
-  <span><%= link "New Album", to: Routes.album_path(@conn, :new) %></span>
+  <span><%= link "New Album", to: Routes.album_path(@conn, :new) %></span> |
+  <span><%= link "Genres", to: Routes.genre_index_path(@conn, :index) %></span>
 </div>
 
 <h1 class="pull-center">Listing Albums</h1>
-
 
 <table>
   <thead>

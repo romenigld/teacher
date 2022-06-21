@@ -32,3 +32,5 @@ teacher-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# The SQLTools Extension for the PostgreSQL
+PGSQL_Teacher.session.sql

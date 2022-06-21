@@ -17,6 +17,13 @@ defmodule TeacherWeb.Router do
   scope "/", TeacherWeb do
     pipe_through :browser
 
+
+    live "/genres", GenreLive.Index, :index
+    live "/genres/new", GenreLive.Index, :new
+    live "/genres/:id/edit", GenreLive.Index, :edit
+    live "/genres/:id", GenreLive.Show, :show
+    live "/genres/:id/show/edit", GenreLive.Show, :edit
+
     get "/", AlbumController, :index
     resources "/albums", AlbumController
 

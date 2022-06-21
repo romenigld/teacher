@@ -34,7 +34,8 @@ defmodule TeacherWeb.AlbumController do
   def edit(conn, %{"id" => id}) do
     album = Recordings.get_album!(id)
     changeset = Recordings.change_album(album)
-    render(conn, "edit.html", album: album, changeset: changeset)
+    genres = Recordings.list_genres()
+    render(conn, "edit.html", album: album, changeset: changeset, genres: genres)
   end
 
   def update(conn, %{"id" => id, "album" => album_params}) do

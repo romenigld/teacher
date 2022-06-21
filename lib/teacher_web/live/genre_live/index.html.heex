@@ -1,0 +1,39 @@
+<h1>Listing Genres</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.genre_index_path(@socket, :index)}>
+    <.live_component
+      module={TeacherWeb.GenreLive.FormComponent}
+      id={@genre.id || :new}
+      title={@page_title}
+      action={@live_action}
+      genre={@genre}
+      return_to={Routes.genre_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="genres">
+    <%= for genre <- @genres do %>
+      <tr id={"genre-#{genre.id}"}>
+        <td><%= genre.name %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.genre_show_path(@socket, :show, genre) %></span>
+          <span><%= live_patch "Edit", to: Routes.genre_index_path(@socket, :edit, genre) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: genre.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Genre", to: Routes.genre_index_path(@socket, :new) %></span>

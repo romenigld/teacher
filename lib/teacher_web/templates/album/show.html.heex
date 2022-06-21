@@ -22,6 +22,14 @@
     <%= @album.year %>
   </li>
 
+  <li>
+    <strong>Genres:</strong>
+    <br>
+    <%= for genre <- @album.genres do %>
+      <%= genre.name %>
+      <br>
+    <% end %>
+  </li>
 </ul>
 
 <span><%= link "Edit", to: Routes.album_path(@conn, :edit, @album) %></span> |

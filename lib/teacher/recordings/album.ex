@@ -8,6 +8,8 @@ defmodule Teacher.Recordings.Album do
     field :title, :string
     field :year, :integer
 
+    many_to_many :genres, Teacher.Recordings.Genre, join_through: "albums_genres", on_replace: :delete
+
     timestamps()
   end
 
@@ -16,5 +18,10 @@ defmodule Teacher.Recordings.Album do
     album
     |> cast(attrs, [:artist, :summary, :title, :year])
     |> validate_required([:artist, :summary, :title, :year])
+    |> Ecto.Changeset.put_assoc(:genres, get_genres(attrs["genres"]))
+  end
+
+  defp get_genres(genre_ids) do
+    Teacher.Recordings.get_genres(genre_ids)
   end
 end
