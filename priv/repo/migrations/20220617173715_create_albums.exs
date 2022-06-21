@@ -4,7 +4,7 @@ defmodule Teacher.Repo.Migrations.CreateAlbums do
   def change do
     create table(:albums) do
       add :artist, :string
-      add :summary, :string
+      add :summary, :text
       add :title, :string
       add :year, :integer
 
