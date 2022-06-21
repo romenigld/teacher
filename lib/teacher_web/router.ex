@@ -20,7 +20,7 @@ defmodule TeacherWeb.Router do
     get "/", AlbumController, :index
     resources "/albums", AlbumController
 
-    # get "/", PageController, :index
+    get "/page", PageController, :index
   end
 
   # Other scopes may use custom stacks.
