@@ -6,7 +6,17 @@ defmodule Teacher.Recordings do
   import Ecto.Query, warn: false
   alias Teacher.Repo
 
-  alias Teacher.Recordings.Album
+  alias Teacher.Recordings.{Album, Genre}
+
+  def albums_for_genre(genre) do
+    qry =
+      from album in Album,
+      join: genre in assoc(album, :genres),
+      where: genre.name == ^genre,
+      preload: [:genres]
+
+    Repo.all(qry)
+  end
 
   @doc """
   Returns the list of albums.
@@ -18,7 +28,11 @@ defmodule Teacher.Recordings do
 
   """
   def list_albums do
-    Repo.all(Album)
+    qry =
+      from album in Album,
+      preload: [:genres]
+
+    Repo.all(qry)
   end
 
   @doc """
@@ -105,8 +119,6 @@ defmodule Teacher.Recordings do
   def change_album(%Album{} = album, attrs \\ %{}) do
     Album.changeset(album, attrs)
   end
-
-  alias Teacher.Recordings.Genre
 
   @doc """
   Returns the list of genres.

@@ -1,0 +1,40 @@
+<div class="pull-right">
+
+  <span><%= link "Albums", to: Routes.album_index_path(@socket, :index) %></span> |
+  <span><%= link "Genres", to: Routes.genre_index_path(@socket, :index) %></span>
+</div>
+
+<h1>Listing Albums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Artist</th>
+      <th>Summary</th>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Genres</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for album <- @albums do %>
+      <tr>
+        <td><%= album.artist %></td>
+        <td><%= album.summary %></td>
+        <td><%= album.title %></td>
+        <td><%= album.year %></td>
+        <td>
+          <%= for genre <- album.genres do %>
+            <%= live_patch genre.name, to: Routes.album_index_path(@socket, :index, genre: genre.name) %>
+          <% end %>
+        </td>
+
+        <td>
+          <span><%= link "Show", to: Routes.album_path(@socket, :show, album) %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

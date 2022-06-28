@@ -24,8 +24,10 @@ defmodule TeacherWeb.Router do
     live "/genres/:id", GenreLive.Show, :show
     live "/genres/:id/show/edit", GenreLive.Show, :edit
 
-    get "/", AlbumController, :index
-    resources "/albums", AlbumController
+
+    resources "/albums", AlbumController, except: [:index]
+    live "/albums", AlbumLive.Index, :index
+    live "/", AlbumLive.Index, :index
 
     get "/page", PageController, :index
   end
